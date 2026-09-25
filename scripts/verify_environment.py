@@ -20,14 +20,19 @@ checks.append(("Azure CLI installed", az is not None, az or "not found"))
 for package in ("agent_framework", "azure.identity", "dotenv"):
     checks.append((f"Python package: {package}", importlib.util.find_spec(package) is not None, package))
 
-endpoint = os.getenv("FOUNDRY_PROJECT_ENDPOINT", "").strip()
-checks.append(
-    (
-        "FOUNDRY_PROJECT_ENDPOINT configured",
-        bool(endpoint) and "your-project" not in endpoint,
-        endpoint if endpoint else "missing",
-    )
+endpoint = os.getenv("FOUNDRY_PROJECT_ENDPOINT", "").strip().rstrip("/")
+endpoint_ok = (
+    bool(endpoint)
+    and "your-project" not in endpoint
+    and "/api/projects/" in endpoint
+    and "/openai/" not in endpoint
+    and not endpoint.endswith("/responses")
 )
+endpoint_detail = endpoint if endpoint_ok else (
+    "invalid: use the project endpoint ending at /api/projects/<project>, "
+    "not /openai/v1/responses"
+)
+checks.append(("Foundry PROJECT endpoint", endpoint_ok, endpoint_detail))
 
 model = os.getenv("FOUNDRY_MODEL", "gpt-4o").strip() or "gpt-4o"
 checks.append(("FOUNDRY_MODEL resolved", bool(model), model))
