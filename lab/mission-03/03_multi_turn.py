@@ -3,6 +3,15 @@
 # Upstream: microsoft/agent-framework @ 2c46deb91e70ea6d7bbc99263147e0f470d52546
 
 import asyncio
+import sys
+from pathlib import Path
+
+# Direct execution sets sys.path to this mission folder. Add the repository root
+# so the shared lab package resolves from either the repo root or mission folder.
+REPO_ROOT = Path(__file__).resolve().parents[2]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
 
 from agent_framework import Agent
 from agent_framework.foundry import FoundryChatClient
