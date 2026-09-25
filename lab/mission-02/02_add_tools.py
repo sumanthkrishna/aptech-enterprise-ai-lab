@@ -11,17 +11,9 @@ from agent_framework.foundry import FoundryChatClient
 from azure.identity import AzureCliCredential
 from pydantic import Field
 
-"""
-Add Tools — Give your agent a function tool
-
-This sample shows how to define a function tool with the @tool decorator
-and wire it into an agent so the model can call it.
-"""
+from lab.common.config import get_foundry_config
 
 
-# <define_tool>
-# NOTE: approval_mode="never_require" is for sample brevity.
-# Use "always_require" in production for user confirmation before tool execution.
 @tool(approval_mode="never_require")
 def get_weather(
     location: Annotated[str, Field(description="The location to get the weather for.")],
@@ -31,29 +23,24 @@ def get_weather(
     return f"The weather in {location} is {conditions[randint(0, 3)]} with a high of {randint(10, 30)}°C."
 
 
-# </define_tool>
-
-
 async def main() -> None:
+    project_endpoint, model = get_foundry_config()
+
     client = FoundryChatClient(
-        project_endpoint="https://your-project.services.ai.azure.com",
-        model="gpt-4o",
+        project_endpoint=project_endpoint,
+        model=model,
         credential=AzureCliCredential(),
     )
 
-    # <create_agent_with_tools>
     agent = Agent(
         client=client,
         name="WeatherAgent",
         instructions="You are a helpful weather agent. Use the get_weather tool to answer questions.",
         tools=[get_weather],
     )
-    # </create_agent_with_tools>
 
-    # <run_agent>
     result = await agent.run("What's the weather like in Seattle?")
     print(f"Agent: {result}")
-    # </run_agent>
 
 
 if __name__ == "__main__":
