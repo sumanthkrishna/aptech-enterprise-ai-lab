@@ -23,13 +23,27 @@ from pydantic import Field
 from lab.common.config import get_foundry_config
 
 
+def generate_weather_result(location: str) -> str:
+    """Generate the sample's local weather value independently of the model."""
+    conditions = ["sunny", "cloudy", "rainy", "stormy"]
+    condition = conditions[randint(0, 3)]
+    high_c = randint(10, 30)
+    return f"The weather in {location} is {condition} with a high of {high_c}°C."
+
+
 @tool(approval_mode="never_require")
 def get_weather(
     location: Annotated[str, Field(description="The location to get the weather for.")],
 ) -> str:
     """Get the weather for a given location."""
-    conditions = ["sunny", "cloudy", "rainy", "stormy"]
-    return f"The weather in {location} is {conditions[randint(0, 3)]} with a high of {randint(10, 30)}°C."
+    tool_result = generate_weather_result(location)
+
+    # Learner-visible evidence: observe the source-of-truth value before the model
+    # turns it into a final natural-language answer.
+    print(f"[TRACE] get_weather(location={location!r})")
+    print(f"[TRACE] tool_result={tool_result!r}")
+
+    return tool_result
 
 
 async def main() -> None:
