@@ -24,7 +24,7 @@ def main() -> None:
     module = load_mission_module()
 
     for _ in range(25):
-        result = module.get_weather("Seattle")
+        result = module.generate_weather_result("Seattle")
         assert "Seattle" in result, f"Location missing from tool result: {result}"
         match = re.search(r"high of (\d+)°C", result)
         assert match, f"Temperature missing from tool result: {result}"
