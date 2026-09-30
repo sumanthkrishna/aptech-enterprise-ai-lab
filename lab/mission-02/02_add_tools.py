@@ -30,7 +30,7 @@ def get_weather(
     """Get the weather for a given location."""
     conditions = ["sunny", "cloudy", "rainy", "stormy"]
     condition = conditions[randint(0, 3)]
-    high_c = 99
+    high_c = randint(10, 30)
     tool_result = f"The weather in {location} is {condition} with a high of {high_c}°C."
 
     # Learner-visible evidence: observe the source-of-truth value before the model
