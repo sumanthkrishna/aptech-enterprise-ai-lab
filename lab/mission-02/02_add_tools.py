@@ -29,7 +29,16 @@ def get_weather(
 ) -> str:
     """Get the weather for a given location."""
     conditions = ["sunny", "cloudy", "rainy", "stormy"]
-    return f"The weather in {location} is {conditions[randint(0, 3)]} with a high of {randint(10, 30)}°C."
+    condition = conditions[randint(0, 3)]
+    high_c = randint(10, 30)
+    tool_result = f"The weather in {location} is {condition} with a high of {high_c}°C."
+
+    # Learner-visible evidence: observe the source-of-truth value before the model
+    # turns it into a final natural-language answer.
+    print(f"[TRACE] get_weather(location={location!r})")
+    print(f"[TRACE] tool_result={tool_result!r}")
+
+    return tool_result
 
 
 async def main() -> None:
