@@ -35,12 +35,14 @@ async def main() -> None:
         instructions="You are a friendly assistant. Keep your answers brief.",
     )
 
-    session = agent.create_session()
+    alice_session = agent.create_session()
 
-    result = await agent.run("My name is Alice and I love hiking.", session=session)
+    print("[TRACE] user=Alice action=create_session")
+    result = await agent.run("My name is Alice and I love hiking.", session=alice_session)
     print(f"Agent: {result}\n")
 
-    result = await agent.run("What do you remember about me?", session=session)
+    print("[TRACE] user=Alice action=reuse_same_session")
+    result = await agent.run("What do you remember about me?", session=alice_session)
     print(f"Agent: {result}")
 
 
