@@ -43,6 +43,15 @@ async def main() -> None:
 
     print("[TRACE] user=Alice action=reuse_same_session")
     result = await agent.run("What do you remember about me?", session=alice_session)
+    print(f"Agent: {result}\n")
+
+    # BUG-002 (controlled incident): Bob is incorrectly routed to Alice's session.
+    # Synthetic identities only; never use real personal or sensitive information.
+    print("[TRACE] user=Bob action=INCORRECTLY_reuse_alice_session")
+    result = await agent.run(
+        "I am Bob. Before I tell you anything else, what do you remember about me?",
+        session=alice_session,
+    )
     print(f"Agent: {result}")
 
 
