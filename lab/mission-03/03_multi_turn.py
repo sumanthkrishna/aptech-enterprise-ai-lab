@@ -18,6 +18,7 @@ from agent_framework.foundry import FoundryChatClient
 from azure.identity import AzureCliCredential
 
 from lab.common.config import get_foundry_config
+from session_router import SessionRouter
 
 
 async def main() -> None:
@@ -35,7 +36,8 @@ async def main() -> None:
         instructions="You are a friendly assistant. Keep your answers brief.",
     )
 
-    alice_session = agent.create_session()
+    sessions = SessionRouter()
+    alice_session = sessions.get_or_create("alice", agent.create_session)
 
     print("[TRACE] user=Alice action=create_session")
     result = await agent.run("My name is Alice and I love hiking.", session=alice_session)
@@ -46,7 +48,7 @@ async def main() -> None:
     print(f"Agent: {result}\n")
 
     # Correct isolation: each fictional user receives a distinct session.
-    bob_session = agent.create_session()
+    bob_session = sessions.get_or_create("bob", agent.create_session)
     print("[TRACE] user=Bob action=create_separate_session")
     result = await agent.run(
         "I am Bob. Before I tell you anything else, what do you remember about me?",
