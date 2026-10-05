@@ -45,13 +45,18 @@ async def main() -> None:
     result = await agent.run("What do you remember about me?", session=alice_session)
     print(f"Agent: {result}\n")
 
-    # BUG-002 (controlled incident): Bob is incorrectly routed to Alice's session.
-    # Synthetic identities only; never use real personal or sensitive information.
-    print("[TRACE] user=Bob action=INCORRECTLY_reuse_alice_session")
+    # Correct isolation: each fictional user receives a distinct session.
+    bob_session = agent.create_session()
+    print("[TRACE] user=Bob action=create_separate_session")
     result = await agent.run(
         "I am Bob. Before I tell you anything else, what do you remember about me?",
-        session=alice_session,
+        session=bob_session,
     )
+    print(f"Agent: {result}\n")
+
+    # Positive regression: Alice should still retain her own same-session context.
+    print("[TRACE] user=Alice action=return_to_own_session")
+    result = await agent.run("What hobby did I tell you about?", session=alice_session)
     print(f"Agent: {result}")
 
 
