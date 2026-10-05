@@ -9,3 +9,9 @@ Current pilot sequence:
 Method: **ASK → HYPOTHESIZE → INSPECT → TEST → PROVE → EXPLAIN**
 
 Full learner mission cards are being migrated from the approved Aptech pilot documents into this folder.
+
+
+## Mission 03 learner package
+
+- `mission-03-prove-session-boundary.md` — evidence-driven BUG-002 investigation.
+- `../../docs/milestones/MILESTONE-03.md` — complete self-learning milestone and verification gate.
