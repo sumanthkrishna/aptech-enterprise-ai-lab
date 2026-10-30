@@ -64,8 +64,8 @@ Read the story first, then open the code. Try to predict what the program will d
 
 - Keep `release/starter-v1` as the frozen newcomer baseline. Don't add future missions to it.
 - Keep the original `missionXX-*` branches unchanged after they are merged. Learners should create their own `learner/*` branches for exercises.
-- Merge completed mission PRs into `main` in order. Mission 02 and 03 have diverged, so review their combined file changes and resolve any overlap before merging Mission 03.
-- Missions 04 and 05 are stacked on their predecessors. After each predecessor merges, retarget the next PR to `main` and check its diff and tests again.
+- Merge the prepared integration PRs into `main` in this order: [#2](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/pull/2), [#7](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/pull/7), [#8](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/pull/8), then [#9](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/pull/9). Integration branches inherit their predecessor's code and reconcile shared files without changing the original mission branches.
+- The prepared integration PRs already target `main`. After each predecessor merges, recheck the next PR's diff and GitHub mergeability before clicking Merge. PRs #8 and #9 remain drafts until verification gates are addressed.
 - Prefer merge commits where preserving controlled broken/fixed history matters. Avoid squash-merging those teaching histories.
 - Create an immutable release tag after a verified foundation or platform milestone. Use release branches only when a checkpoint needs continuing maintenance.
 - Keep offline and live verification states explicit. Do not merge a draft PR merely because GitHub reports it as mergeable.
@@ -94,3 +94,14 @@ The references for Missions 01–04 were created from available repository sourc
 | 2026-10-30 | Initial library index for living Mission 01–05 knowledge references |
 | 2026-10-30 | Humanized introduction and learner instructions; branch links preserved |
 | 2026-10-30 | Added frozen starter checkpoint, learner branch workflow, and merge/release policy |
+
+## Prepared merge queue (2026-10-30)
+
+| Order | PR | Integration branch | Action |
+|---|---|---|---|
+| 1 | [#2](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/pull/2) | `mission02-investigate-tool-path` | Merge first |
+| 2 | [#7](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/pull/7) | `integration/mission03-on-mission02` | Merge after #2 |
+| 3 | [#8](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/pull/8) | `integration/mission04-on-mission03` | Draft; verify then merge after #7 |
+| 4 | [#9](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/pull/9) | `integration/mission05-on-mission04` | Draft; verify then merge after #8 |
+
+Original PRs #3–#5 were closed as superseded, not merged. Their original mission branches remain intact. This queue is designed to avoid the competing shared-file edits found between Missions 02 and 03. GitHub mergeability must be checked again after each merge; current checks are not a guarantee about future repository changes.
