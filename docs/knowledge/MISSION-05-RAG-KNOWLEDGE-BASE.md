@@ -13,6 +13,16 @@ tags: [rag, retrieval, grounding, fastapi, document-versioning, bug-004, evaluat
 
 > **Purpose:** A durable, searchable technical reference for the concepts, implementation decisions, debugging patterns, and evidence gates in Mission 05. This is a companion to the Mission 05 self-learning Word guide, not a claim of production readiness.
 
+## Mission navigation and branch provenance
+
+**Documentation home:** [Living Knowledge Library](./README.md) (maintained on `mission05-rag-grounded-answers`).  
+**Mission implementation branch:** [`mission05-rag-grounded-answers`](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/tree/mission05-rag-grounded-answers).  
+**Verified entry point:** [`lab/mission-05/service.py`](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/blob/mission05-rag-grounded-answers/lab/mission-05/service.py).  
+**Learning sequence:** [← Mission 04](./MISSION-04-FASTAPI-AGENT-SERVICE-KNOWLEDGE-BASE.md) · Next mission not yet documented.
+
+**Version-control note:** Mission 01's baseline is on `main`, not a separate `mission01-*` branch. Mission 02–05 have individual branches. These knowledge documents are consolidated on the Mission 05 branch and link to each mission's implementation branch; they have **not** been copied into every earlier branch. No merges are performed by documentation updates.
+
+
 ## Navigation / retrieval index
 
 | ID | Topic | Search terms |
