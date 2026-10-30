@@ -18,6 +18,7 @@ from agent_framework.foundry import FoundryChatClient
 from azure.identity import AzureCliCredential
 
 from lab.common.config import get_foundry_config
+from session_router import SessionRouter
 
 
 async def main() -> None:
@@ -35,12 +36,29 @@ async def main() -> None:
         instructions="You are a friendly assistant. Keep your answers brief.",
     )
 
-    session = agent.create_session()
+    sessions = SessionRouter()
+    alice_session = sessions.get_or_create("alice", agent.create_session)
 
-    result = await agent.run("My name is Alice and I love hiking.", session=session)
+    print("[TRACE] user=Alice action=create_session")
+    result = await agent.run("My name is Alice and I love hiking.", session=alice_session)
     print(f"Agent: {result}\n")
 
-    result = await agent.run("What do you remember about me?", session=session)
+    print("[TRACE] user=Alice action=reuse_same_session")
+    result = await agent.run("What do you remember about me?", session=alice_session)
+    print(f"Agent: {result}\n")
+
+    # Correct isolation: each fictional user receives a distinct session.
+    bob_session = sessions.get_or_create("bob", agent.create_session)
+    print("[TRACE] user=Bob action=create_separate_session")
+    result = await agent.run(
+        "I am Bob. Before I tell you anything else, what do you remember about me?",
+        session=bob_session,
+    )
+    print(f"Agent: {result}\n")
+
+    # Positive regression: Alice should still retain her own same-session context.
+    print("[TRACE] user=Alice action=return_to_own_session")
+    result = await agent.run("What hobby did I tell you about?", session=alice_session)
     print(f"Agent: {result}")
 
 
