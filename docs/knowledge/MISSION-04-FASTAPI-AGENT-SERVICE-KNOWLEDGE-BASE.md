@@ -19,7 +19,7 @@ tags: [enterprise-ai, mission-04, self-learning]
 **Verified entry point:** [`lab/mission-04/service.py`](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/blob/mission04-fastapi-agent-service/lab/mission-04/service.py).  
 **Learning sequence:** [← Mission 03](./MISSION-03-SESSION-ISOLATION-KNOWLEDGE-BASE.md) · [Mission 05 →](./MISSION-05-RAG-KNOWLEDGE-BASE.md).
 
-**Version-control note:** Mission 01's baseline is on `main`, not a separate `mission01-*` branch. Mission 02–05 have individual branches. These knowledge documents are consolidated on the Mission 05 branch and link to each mission's implementation branch; they have **not** been copied into every earlier branch. No merges are performed by documentation updates.
+**Version-control note:** Mission 01's baseline is frozen on `release/starter-v1` (created from `main` before the mission merges). Mission 02–05 have individual branches. These knowledge documents are consolidated on the Mission 05 branch and link to each mission's implementation branch; they have **not** been copied into every earlier branch. No merges are performed by documentation updates.
 
 
 ## Retrieval index
