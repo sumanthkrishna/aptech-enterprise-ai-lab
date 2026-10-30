@@ -1,6 +1,6 @@
 # Aptech Enterprise AI Lab
 
-A 40-hour, investigation-driven enterprise AI training lab.
+A 40-hour enterprise AI lab built around real engineering habits: read inherited code, reproduce a problem, trace its cause, make a small repair, and prove it works.
 
 ## Self-learning curriculum
 
@@ -19,7 +19,7 @@ Agentic AI Track v0.1 (Missions 04–05 also available on their feature branches
 
 **ASK → HYPOTHESIZE → INSPECT → TEST → PROVE → EXPLAIN**
 
-Learners inherit a working system, investigate it, modify it, break it, fix it, and defend their reasoning.
+Start from a working sample. Find out why it works, change one thing at a time, and keep evidence when something breaks. The goal is to explain your decisions to another engineer, not just get an answer from the Agent.
 
 ## Upstream
 
