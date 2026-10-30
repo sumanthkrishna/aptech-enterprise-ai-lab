@@ -1,6 +1,6 @@
 # Aptech Enterprise AI Lab — Living Knowledge Library
 
-**Purpose:** self-guided, source-linked enterprise AI engineering curriculum. Start at Mission 01 and progress in order. Each mission has a living Markdown reference, runnable code, investigation exercise, and evidence gate.
+This is the reading path for the Aptech Enterprise AI Lab. Start with Mission 01, get its sample running, and move forward only when you can explain what the code does and what your tests actually prove. Each mission links to the implementation branch, the relevant source files, a defect investigation, and a set of checks you can run yourself.
 
 ## Learning path
 
@@ -23,6 +23,10 @@
 | 05 | [mission05-rag-grounded-answers](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/tree/mission05-rag-grounded-answers) | [service.py](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/blob/mission05-rag-grounded-answers/lab/mission-05/service.py) | [M05 reference](MISSION-05-RAG-KNOWLEDGE-BASE.md) |
 
 **Provenance:** Mission 01's code lives on `main`; the other four mission branches were confirmed. The five *living reference documents* are centralized on the Mission 05 branch, with direct links to the matching source branch. Earlier branches are not rewritten. This keeps mission history intact and avoids adding competing copies of the same documentation.
+
+## How to work through a mission
+
+Read the story first, then open the code. Try to predict what the program will do before you run it. When something fails, write down your hypothesis and test the earliest boundary that could explain it. Keep the terminal output; you'll need it when you explain your fix.
 
 ## How to study each mission
 
@@ -67,10 +71,11 @@
 
 The references for Missions 01–04 were created from available repository source files; Mission 05 was created earlier. Mission 01's runnable sample was confirmed as `lab/mission-01/01_hello_agent.py` on `main`. The references are a starting knowledge library, not a claim that every mission has been independently runtime-verified.
 
-**Next editorial improvements:** add real observed test evidence and screenshots/terminal transcripts, and expand individual sections as learners raise questions.
+**Evidence still needed:** actual learner test results and Foundry transcripts. Those should be added when observed, rather than written as if the runs already happened.
 
 ## Change log
 
 | Date | Change |
 |---|---|
 | 2026-10-30 | Initial library index for living Mission 01–05 knowledge references |
+| 2026-10-30 | Humanized introduction and learner instructions; branch links preserved |
