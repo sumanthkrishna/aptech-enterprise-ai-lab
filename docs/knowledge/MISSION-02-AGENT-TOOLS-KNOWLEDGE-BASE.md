@@ -1,0 +1,135 @@
+---
+title: "Mission 02 — Give the Agent a Tool"
+project: "Aptech Enterprise AI Lab"
+mission: "02"
+version: "1.0"
+updated: "2026-10-30"
+status: "Living reference; runtime evidence separately required"
+tags: [enterprise-ai, mission-02, self-learning]
+---
+
+# Mission 02 — Give the Agent a Tool
+
+> **Navigation:** [Curriculum index](./README.md) · [Mission 05 RAG](./MISSION-05-RAG-KNOWLEDGE-BASE.md)
+
+## Retrieval index
+
+| ID | Topic |
+|---|---|
+| [M02-01](#m02-01-story-and-outcome) | Story and outcome |
+| [M02-02](#m02-02-prerequisites-and-inheritance) | Prerequisites and inheritance |
+| [M02-03](#m02-03-architecture) | Architecture |
+| [M02-04](#m02-04-core-concepts) | Core concepts |
+| [M02-05](#m02-05-codetoconcept-map) | Code-to-concept map |
+| [M02-06](#m02-06-execution-lifecycle) | Execution lifecycle |
+| [M02-07](#m02-07-controlled-defect-and-diagnosis) | Controlled defect and diagnosis |
+| [M02-08](#m02-08-handson-verification) | Hands-on verification |
+| [M02-09](#m02-09-troubleshooting) | Troubleshooting |
+| [M02-10](#m02-10-evidence-and-scope-limits) | Evidence and scope limits |
+| [M02-11](#m02-11-interview-defense) | Interview defense |
+| [M02-12](#m02-12-glossary) | Glossary |
+| [M02-13](#m02-13-review-checklist) | Review checklist |
+| [M02-14](#m02-14-maintenance-and-references) | Maintenance and references |
+
+## M02-01 Story and outcome
+
+A support assistant needs external information. The engineer adds a callable weather tool, investigates an unrealistic tool output and separates tool truth from model wording.
+
+**Goal:** inherit → investigate → modify → break or model failure → diagnose → fix → defend. Do not confuse a passing offline check with a live Foundry integration result.
+
+## M02-02 Prerequisites and inheritance
+
+Read the earlier mission references before this one. Use a Python virtual environment, install repository requirements, and configure Microsoft Foundry only when running live Agent examples. Never commit .env secrets. This mission builds on the prior one rather than replacing it.
+
+## M02-03 Architecture
+
+User question → Agent → tool schema → get_weather(location) → synthetic result → Agent response.
+
+## M02-04 Core concepts
+
+- **@tool:** Decorator exposing a Python callable to the Agent Framework.
+- **Tool schema:** Callable name and argument contract supplied to the Agent.
+- **Tool execution:** Python code runs after the Agent chooses a tool invocation.
+- **Synthetic result:** Sample data generated locally, not live weather observations.
+- **Regression:** Repeatable check guarding against a previously observed defect.
+
+## M02-05 Code-to-concept map
+
+- `lab/mission-02/02_add_tools.py` — inspect for the concept and verify its behavior.
+- `UPSTREAM.md` — inspect for the concept and verify its behavior.
+
+## M02-06 Execution lifecycle
+
+Declare tool and argument schema → register it on Agent → ask question → inspect whether tool was invoked → inspect raw tool output → evaluate final response.
+
+## M02-07 Controlled defect and diagnosis
+
+BUG-001: a deliberately invalid 99°C tool result was introduced and repaired in the mission history. Current checked sample uses a random 10–30°C range and random condition; it is not a live weather service.
+
+**Diagnostic method:** ASK → HYPOTHESIZE → INSPECT → TEST → PROVE → EXPLAIN. State the earliest incorrect boundary; do not substitute a confident Agent answer for evidence.
+
+## M02-08 Hands-on verification
+
+1. Inspect @tool get_weather(location) and Agent tools=[get_weather].
+2. Run the tool locally multiple times; observe random synthetic output.
+3. Inspect branch history for BUG-001 if the historical commit is available.
+4. Run the Agent against Foundry separately; observe tool invocation rather than assuming it occurred.
+
+## M02-09 Troubleshooting
+
+| Symptom | Inspect |
+|---|---|
+| Unrealistic weather | Tool code and synthetic random values |
+| Tool not invoked | Agent registration, prompt and trace |
+| Model response differs | Raw tool output vs generated prose |
+
+## M02-10 Evidence and scope limits
+
+**Source-supported facts:** the listed repository code and tests describe the behavior above. **Not automatically proven:** live Foundry runtime, production readiness, authentication, durable memory, or a reviewed deployment. Capture actual commands, output, commit SHA and reviewer notes before changing a gate to PASS.
+
+## M02-11 Interview defense
+
+**Q1. Is get_weather a real weather API?**
+
+No. It returns randomly selected conditions and temperatures.
+
+**Q2. Why can a model answer be wrong even with a tool?**
+
+The tool may supply bad data or the model may misinterpret its result.
+
+**Q3. Where is the tool registered?**
+
+The Agent constructor receives tools=[get_weather].
+
+**Q4. Why distinguish local tests and Foundry integration?**
+
+Local Python behavior does not prove the model invoked the tool.
+
+## M02-12 Glossary
+
+- **@tool:** Decorator exposing a Python callable to the Agent Framework.
+- **Tool schema:** Callable name and argument contract supplied to the Agent.
+- **Tool execution:** Python code runs after the Agent chooses a tool invocation.
+- **Synthetic result:** Sample data generated locally, not live weather observations.
+- **Regression:** Repeatable check guarding against a previously observed defect.
+
+## M02-13 Review checklist
+
+- [ ] Explain the business story and architectural boundary.
+- [ ] Locate the relevant source file(s).
+- [ ] Demonstrate the healthy baseline.
+- [ ] Reproduce or reason about the controlled defect accurately.
+- [ ] Run applicable offline tests.
+- [ ] Record live integration evidence where applicable.
+- [ ] Describe security and persistence limitations.
+- [ ] Explain the repair and regression to another engineer.
+
+## M02-14 Maintenance and references
+
+**Primary sources:** `lab/mission-02/02_add_tools.py`, `UPSTREAM.md`.
+
+**Maintenance:** keep these stable section IDs; update behavior descriptions when code changes; never invent successful test results. Log meaningful revisions.
+
+| Date | Version | Change |
+|---|---|---|
+| 2026-10-30 | 1.0 | Initial living reference created from available repository source |
