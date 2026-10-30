@@ -1,14 +1,14 @@
 ---
-title: "Mission 02 — Give the Agent a Tool"
+title: "Mission 02 – Give the Agent a Tool"
 project: "Aptech Enterprise AI Lab"
 mission: "02"
-version: "1.0"
+version: "1.1"
 updated: "2026-10-30"
 status: "Living reference; runtime evidence separately required"
 tags: [enterprise-ai, mission-02, self-learning]
 ---
 
-# Mission 02 — Give the Agent a Tool
+# Mission 02 – Give the Agent a Tool
 
 > **Navigation:** [Curriculum index](./README.md) · [Mission 05 RAG](./MISSION-05-RAG-KNOWLEDGE-BASE.md)
 
@@ -30,10 +30,10 @@ tags: [enterprise-ai, mission-02, self-learning]
 | [M02-02](#m02-02-prerequisites-and-inheritance) | Prerequisites and inheritance |
 | [M02-03](#m02-03-architecture) | Architecture |
 | [M02-04](#m02-04-core-concepts) | Core concepts |
-| [M02-05](#m02-05-codetoconcept-map) | Code-to-concept map |
+| [M02-05](#m02-05-code-to-concept-map) | Code-to-concept map |
 | [M02-06](#m02-06-execution-lifecycle) | Execution lifecycle |
 | [M02-07](#m02-07-controlled-defect-and-diagnosis) | Controlled defect and diagnosis |
-| [M02-08](#m02-08-handson-verification) | Hands-on verification |
+| [M02-08](#m02-08-hands-on-verification) | Hands-on verification |
 | [M02-09](#m02-09-troubleshooting) | Troubleshooting |
 | [M02-10](#m02-10-evidence-and-scope-limits) | Evidence and scope limits |
 | [M02-11](#m02-11-interview-defense) | Interview defense |
@@ -43,13 +43,15 @@ tags: [enterprise-ai, mission-02, self-learning]
 
 ## M02-01 Story and outcome
 
-A support assistant needs external information. The engineer adds a callable weather tool, investigates an unrealistic tool output and separates tool truth from model wording.
+The Agent can now call Python code to get information it doesn't have in the conversation. The sample uses weather because the tool is easy to inspect. Its data is deliberately synthetic: random conditions and a temperature between 10°C and 30°C.
 
-**Goal:** inherit → investigate → modify → break or model failure → diagnose → fix → defend. Do not confuse a passing offline check with a live Foundry integration result.
+The investigation begins when a tool reports an impossible 99°C. Before changing the prompt, inspect the value returned by the tool. If the input is wrong, a polished model answer can still be wrong.
+
+**Working habit:** INHERIT → INVESTIGATE → MODIFY → BREAK → DIAGNOSE → FIX → DEFEND.
 
 ## M02-02 Prerequisites and inheritance
 
-Read the earlier mission references before this one. Use a Python virtual environment, install repository requirements, and configure Microsoft Foundry only when running live Agent examples. Never commit .env secrets. This mission builds on the prior one rather than replacing it.
+Complete Mission 01's baseline first. Then open `lab/mission-02/02_add_tools.py` on the Mission 02 branch. Find the `@tool` decorator, the `location` argument, and `tools=[get_weather]` in the Agent constructor. The Azure configuration is inherited; keep your local `.env` private.
 
 ## M02-03 Architecture
 
@@ -65,8 +67,10 @@ User question → Agent → tool schema → get_weather(location) → synthetic 
 
 ## M02-05 Code-to-concept map
 
-- `lab/mission-02/02_add_tools.py` — inspect for the concept and verify its behavior.
-- `UPSTREAM.md` — inspect for the concept and verify its behavior.
+- `lab/mission-02/02_add_tools.py`: read `get_weather()`, the argument schema, and the Agent's tool registration.
+- `UPSTREAM.md`: check the upstream Agent Framework provenance.
+
+Notice that `get_weather()` is a random local function. There is no weather provider or external weather API in this sample.
 
 ## M02-06 Execution lifecycle
 
@@ -74,9 +78,11 @@ Declare tool and argument schema → register it on Agent → ask question → i
 
 ## M02-07 Controlled defect and diagnosis
 
-BUG-001: a deliberately invalid 99°C tool result was introduced and repaired in the mission history. Current checked sample uses a random 10–30°C range and random condition; it is not a live weather service.
+**BUG-001:** the mission's controlled history includes a bad 99°C result. The current checked sample generates values from 10°C to 30°C, along with a random condition. Neither value is a real forecast.
 
-**Diagnostic method:** ASK → HYPOTHESIZE → INSPECT → TEST → PROVE → EXPLAIN. State the earliest incorrect boundary; do not substitute a confident Agent answer for evidence.
+When you investigate, compare the raw tool output with the Agent's final wording. If the tool supplied 99°C, fix the tool boundary first. A better prompt cannot turn fabricated data into a trustworthy weather report.
+
+Use the investigation sequence: ASK → HYPOTHESIZE → INSPECT → TEST → PROVE → EXPLAIN.
 
 ## M02-08 Hands-on verification
 
@@ -95,7 +101,7 @@ BUG-001: a deliberately invalid 99°C tool result was introduced and repaired in
 
 ## M02-10 Evidence and scope limits
 
-**Source-supported facts:** the listed repository code and tests describe the behavior above. **Not automatically proven:** live Foundry runtime, production readiness, authentication, durable memory, or a reviewed deployment. Capture actual commands, output, commit SHA and reviewer notes before changing a gate to PASS.
+Run the Python tool directly to see its random output, then run the Agent against Foundry and inspect whether the tool was actually called. Those are different observations. The current file supports the corrected range; a full live tool-call trace still needs to be captured by the learner.
 
 ## M02-11 Interview defense
 
@@ -143,3 +149,4 @@ Local Python behavior does not prove the model invoked the tool.
 | Date | Version | Change |
 |---|---|---|
 | 2026-10-30 | 1.0 | Initial living reference created from available repository source |
+| 2026-10-30 | 1.1 | Humanized learning narrative and evidence guidance; preserved branch and source links |
