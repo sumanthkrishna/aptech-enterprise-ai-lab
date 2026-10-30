@@ -12,6 +12,16 @@ tags: [enterprise-ai, mission-03, self-learning]
 
 > **Navigation:** [Curriculum index](./README.md) · [Mission 05 RAG](./MISSION-05-RAG-KNOWLEDGE-BASE.md)
 
+## Mission navigation and branch provenance
+
+**Documentation home:** [Living Knowledge Library](./README.md) (maintained on `mission05-rag-grounded-answers`).  
+**Mission implementation branch:** [`mission03-session-isolation`](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/tree/mission03-session-isolation).  
+**Verified entry point:** [`lab/mission-03/03_multi_turn.py`](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/blob/mission03-session-isolation/lab/mission-03/03_multi_turn.py).  
+**Learning sequence:** [← Mission 02](./MISSION-02-AGENT-TOOLS-KNOWLEDGE-BASE.md) · [Mission 04 →](./MISSION-04-FASTAPI-AGENT-SERVICE-KNOWLEDGE-BASE.md).
+
+**Version-control note:** Mission 01's baseline is on `main`, not a separate `mission01-*` branch. Mission 02–05 have individual branches. These knowledge documents are consolidated on the Mission 05 branch and link to each mission's implementation branch; they have **not** been copied into every earlier branch. No merges are performed by documentation updates.
+
+
 ## Retrieval index
 
 | ID | Topic |
