@@ -12,6 +12,18 @@
 | 04 | Turn Your Agent into an API | [FastAPI service](MISSION-04-FASTAPI-AGENT-SERVICE-KNOWLEDGE-BASE.md) | HTTP validation, sessions, error boundaries, SSE | BUG-003: hypothetical global session |
 | 05 | Make Your Agent Answer from Documents | [RAG knowledge base](MISSION-05-RAG-KNOWLEDGE-BASE.md) | Retrieval, freshness, grounding, source provenance | BUG-004: retired policy inclusion |
 
+## Branch map and source of truth
+
+| Mission | Implementation branch | Verified entry point | Documentation |
+|---|---|---|---|
+| 01 | [main](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/tree/main) | [01_hello_agent.py](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/blob/main/lab/mission-01/01_hello_agent.py) | [M01 reference](MISSION-01-AGENT-FOUNDATIONS-KNOWLEDGE-BASE.md) |
+| 02 | [mission02-investigate-tool-path](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/tree/mission02-investigate-tool-path) | [02_add_tools.py](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/blob/mission02-investigate-tool-path/lab/mission-02/02_add_tools.py) | [M02 reference](MISSION-02-AGENT-TOOLS-KNOWLEDGE-BASE.md) |
+| 03 | [mission03-session-isolation](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/tree/mission03-session-isolation) | [03_multi_turn.py](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/blob/mission03-session-isolation/lab/mission-03/03_multi_turn.py) | [M03 reference](MISSION-03-SESSION-ISOLATION-KNOWLEDGE-BASE.md) |
+| 04 | [mission04-fastapi-agent-service](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/tree/mission04-fastapi-agent-service) | [service.py](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/blob/mission04-fastapi-agent-service/lab/mission-04/service.py) | [M04 reference](MISSION-04-FASTAPI-AGENT-SERVICE-KNOWLEDGE-BASE.md) |
+| 05 | [mission05-rag-grounded-answers](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/tree/mission05-rag-grounded-answers) | [service.py](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/blob/mission05-rag-grounded-answers/lab/mission-05/service.py) | [M05 reference](MISSION-05-RAG-KNOWLEDGE-BASE.md) |
+
+**Provenance:** Mission 01's code lives on `main`; the other four mission branches were confirmed. The five *living reference documents* are centralized on the Mission 05 branch, with direct links to the matching source branch. Earlier branches are not rewritten. This keeps mission history intact and avoids adding competing copies of the same documentation.
+
 ## How to study each mission
 
 1. **Read** the mission story and concept glossary.
@@ -53,9 +65,9 @@
 
 ## Current coverage and gaps
 
-The references for Missions 01–04 were created from available repository source files; Mission 05 was created earlier. Mission 01's exact runnable sample path was **not confirmed** during this documentation pass, so its reference explicitly calls for locating it before running. The references are a starting knowledge library, not a claim that every mission has been independently runtime-verified.
+The references for Missions 01–04 were created from available repository source files; Mission 05 was created earlier. Mission 01's runnable sample was confirmed as `lab/mission-01/01_hello_agent.py` on `main`. The references are a starting knowledge library, not a claim that every mission has been independently runtime-verified.
 
-**Next editorial improvements:** confirm Mission 01's runnable sample path, add real observed test evidence and screenshots/terminal transcripts, and expand individual sections as learners raise questions.
+**Next editorial improvements:** add real observed test evidence and screenshots/terminal transcripts, and expand individual sections as learners raise questions.
 
 ## Change log
 
