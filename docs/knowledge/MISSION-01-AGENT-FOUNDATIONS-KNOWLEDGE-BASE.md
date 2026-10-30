@@ -15,11 +15,11 @@ tags: [enterprise-ai, mission-01, self-learning]
 ## Mission navigation and branch provenance
 
 **Documentation home:** [Living Knowledge Library](./README.md) (maintained on `mission05-rag-grounded-answers`).  
-**Mission implementation branch:** [`main`](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/tree/main).  
-**Verified entry point:** [`lab/mission-01/01_hello_agent.py`](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/blob/main/lab/mission-01/01_hello_agent.py).  
+**Mission implementation branch:** [`release/starter-v1`](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/tree/release/starter-v1).  
+**Verified entry point:** [`lab/mission-01/01_hello_agent.py`](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/blob/release/starter-v1/lab/mission-01/01_hello_agent.py).  
 **Learning sequence:** Start of curriculum · [Mission 02 →](./MISSION-02-AGENT-TOOLS-KNOWLEDGE-BASE.md).
 
-**Version-control note:** Mission 01's baseline is on `main`, not a separate `mission01-*` branch. Mission 02–05 have individual branches. These knowledge documents are consolidated on the Mission 05 branch and link to each mission's implementation branch; they have **not** been copied into every earlier branch. No merges are performed by documentation updates.
+**Version-control note:** Mission 01's baseline is frozen on `release/starter-v1` (created from `main` before the mission merges). Mission 02–05 have individual branches. These knowledge documents are consolidated on the Mission 05 branch and link to each mission's implementation branch; they have **not** been copied into every earlier branch. No merges are performed by documentation updates.
 
 
 ## Retrieval index
