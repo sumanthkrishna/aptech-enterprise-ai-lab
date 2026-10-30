@@ -15,3 +15,8 @@ Full learner mission cards are being migrated from the approved Aptech pilot doc
 
 - `mission-03-prove-session-boundary.md` — evidence-driven BUG-002 investigation.
 - `../../docs/milestones/MILESTONE-03.md` — complete self-learning milestone and verification gate.
+
+## Mission 02 learner package
+
+- `mission-02-trace-source-of-truth.md` — evidence-driven BUG-001 investigation.
+- `../../docs/milestones/MILESTONE-02.md` — complete self-learning milestone and verification gate.
