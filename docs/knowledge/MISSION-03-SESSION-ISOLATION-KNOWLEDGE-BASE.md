@@ -1,14 +1,14 @@
 ---
-title: "Mission 03 — What Does the Agent Remember?"
+title: "Mission 03 – What Does the Agent Remember?"
 project: "Aptech Enterprise AI Lab"
 mission: "03"
-version: "1.0"
+version: "1.1"
 updated: "2026-10-30"
 status: "Living reference; runtime evidence separately required"
 tags: [enterprise-ai, mission-03, self-learning]
 ---
 
-# Mission 03 — What Does the Agent Remember?
+# Mission 03 – What Does the Agent Remember?
 
 > **Navigation:** [Curriculum index](./README.md) · [Mission 05 RAG](./MISSION-05-RAG-KNOWLEDGE-BASE.md)
 
@@ -30,10 +30,10 @@ tags: [enterprise-ai, mission-03, self-learning]
 | [M03-02](#m03-02-prerequisites-and-inheritance) | Prerequisites and inheritance |
 | [M03-03](#m03-03-architecture) | Architecture |
 | [M03-04](#m03-04-core-concepts) | Core concepts |
-| [M03-05](#m03-05-codetoconcept-map) | Code-to-concept map |
+| [M03-05](#m03-05-code-to-concept-map) | Code-to-concept map |
 | [M03-06](#m03-06-execution-lifecycle) | Execution lifecycle |
 | [M03-07](#m03-07-controlled-defect-and-diagnosis) | Controlled defect and diagnosis |
-| [M03-08](#m03-08-handson-verification) | Hands-on verification |
+| [M03-08](#m03-08-hands-on-verification) | Hands-on verification |
 | [M03-09](#m03-09-troubleshooting) | Troubleshooting |
 | [M03-10](#m03-10-evidence-and-scope-limits) | Evidence and scope limits |
 | [M03-11](#m03-11-interview-defense) | Interview defense |
@@ -43,13 +43,15 @@ tags: [enterprise-ai, mission-03, self-learning]
 
 ## M03-01 Story and outcome
 
-Alice shares a hobby and later asks the Agent to recall it. Bob must not receive Alice's context even though both users share one Agent.
+Alice tells the Agent she likes hiking. When she asks again, the Agent should remember. Then Bob arrives. He must get his own conversation, even though the application uses the same Agent object.
 
-**Goal:** inherit → investigate → modify → break or model failure → diagnose → fix → defend. Do not confuse a passing offline check with a live Foundry integration result.
+This mission teaches a subtle production lesson: conversation continuity is useful only when the application routes each caller to the right session. A cross-user mix-up can happen in ordinary application code.
+
+**Working habit:** INHERIT → INVESTIGATE → MODIFY → BREAK → DIAGNOSE → FIX → DEFEND.
 
 ## M03-02 Prerequisites and inheritance
 
-Read the earlier mission references before this one. Use a Python virtual environment, install repository requirements, and configure Microsoft Foundry only when running live Agent examples. Never commit .env secrets. This mission builds on the prior one rather than replacing it.
+Read Mission 02, then inspect `lab/mission-03/03_multi_turn.py` and `session_router.py`. You will use fictional users and a local in-memory router. Keep the Foundry configuration from earlier missions for the live conversation test.
 
 ## M03-03 Architecture
 
@@ -66,10 +68,10 @@ Fictional user ID → SessionRouter → opaque session → shared Agent.run(mess
 
 ## M03-05 Code-to-concept map
 
-- `lab/mission-03/03_multi_turn.py` — inspect for the concept and verify its behavior.
-- `lab/mission-03/session_router.py` — inspect for the concept and verify its behavior.
-- `tests/test_mission03_session_routing.py` — inspect for the concept and verify its behavior.
-- `docs/milestones/MILESTONE-03.md` — inspect for the concept and verify its behavior.
+- `lab/mission-03/03_multi_turn.py`: follow Alice's first turn, second turn, Bob's turn, and the return to Alice.
+- `lab/mission-03/session_router.py`: see how `get_or_create()` maps a user ID to one opaque session object.
+- `tests/test_mission03_session_routing.py`: inspect the identity assertions for same-user reuse and cross-user separation.
+- `docs/milestones/MILESTONE-03.md`: review the incident story and acceptance criteria.
 
 ## M03-06 Execution lifecycle
 
@@ -77,9 +79,11 @@ Create Agent → get_or_create Alice session → send two Alice turns → create
 
 ## M03-07 Controlled defect and diagnosis
 
-BUG-002: historical deliberate misrouting of Bob to Alice's session; repaired state uses SessionRouter.get_or_create separately for alice and bob.
+**BUG-002:** the controlled history deliberately passes Alice's session to Bob. The repaired sample calls `get_or_create()` separately for `alice` and `bob`.
 
-**Diagnostic method:** ASK → HYPOTHESIZE → INSPECT → TEST → PROVE → EXPLAIN. State the earliest incorrect boundary; do not substitute a confident Agent answer for evidence.
+Prove both sides of the fix: Alice keeps her own context, and Bob gets a different session object. Removing sessions entirely would hide the leak by breaking the feature you were meant to preserve.
+
+Use the investigation sequence: ASK → HYPOTHESIZE → INSPECT → TEST → PROVE → EXPLAIN.
 
 ## M03-08 Hands-on verification
 
@@ -98,7 +102,7 @@ BUG-002: historical deliberate misrouting of Bob to Alice's session; repaired st
 
 ## M03-10 Evidence and scope limits
 
-**Source-supported facts:** the listed repository code and tests describe the behavior above. **Not automatically proven:** live Foundry runtime, production readiness, authentication, durable memory, or a reviewed deployment. Capture actual commands, output, commit SHA and reviewer notes before changing a gate to PASS.
+The offline regression checks Python object identity. It proves Alice's session is reused and Bob's is different. It doesn't prove that the live model remembers a hobby correctly or that a deployed service authenticates users. Run the multi-turn sample separately and compare the observed behavior with the routing traces.
 
 ## M03-11 Interview defense
 
@@ -147,3 +151,4 @@ The in-memory router does not provide durable storage.
 | Date | Version | Change |
 |---|---|---|
 | 2026-10-30 | 1.0 | Initial living reference created from available repository source |
+| 2026-10-30 | 1.1 | Humanized learning narrative and evidence guidance; preserved branch and source links |
