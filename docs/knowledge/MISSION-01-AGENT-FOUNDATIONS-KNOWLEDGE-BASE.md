@@ -12,6 +12,16 @@ tags: [enterprise-ai, mission-01, self-learning]
 
 > **Navigation:** [Curriculum index](./README.md) · [Mission 05 RAG](./MISSION-05-RAG-KNOWLEDGE-BASE.md)
 
+## Mission navigation and branch provenance
+
+**Documentation home:** [Living Knowledge Library](./README.md) (maintained on `mission05-rag-grounded-answers`).  
+**Mission implementation branch:** [`main`](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/tree/main).  
+**Verified entry point:** [`lab/mission-01/01_hello_agent.py`](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/blob/main/lab/mission-01/01_hello_agent.py).  
+**Learning sequence:** Start of curriculum · [Mission 02 →](./MISSION-02-AGENT-TOOLS-KNOWLEDGE-BASE.md).
+
+**Version-control note:** Mission 01's baseline is on `main`, not a separate `mission01-*` branch. Mission 02–05 have individual branches. These knowledge documents are consolidated on the Mission 05 branch and link to each mission's implementation branch; they have **not** been copied into every earlier branch. No merges are performed by documentation updates.
+
+
 ## Retrieval index
 
 | ID | Topic |
@@ -59,6 +69,7 @@ Configuration → FoundryChatClient → Agent(instructions) → run → response
 - `scripts/verify_environment.py` — inspect for the concept and verify its behavior.
 - `UPSTREAM.md` — inspect for the concept and verify its behavior.
 - `README.md` — inspect for the concept and verify its behavior.
+- `lab/mission-01/01_hello_agent.py` — verified runnable baseline; demonstrates both Agent.run and stream=True.
 
 ## M01-06 Execution lifecycle
 
@@ -72,10 +83,10 @@ No numbered defect in this mission; the exercise is configuration and baseline i
 
 ## M01-08 Hands-on verification
 
-1. Inspect the Mission 01 runnable sample location in the repository (not verified from the available source paths).
+1. Inspect lab/mission-01/01_hello_agent.py and its non-streaming and streaming Agent.run calls.
 2. Check .env configuration without committing secrets.
 3. Run python scripts/verify_environment.py.
-4. Run the actual Agent sample against Foundry and retain output; do not infer live success from configuration alone.
+4. Run python lab/mission-01/01_hello_agent.py against Foundry and retain output; do not infer live success from configuration alone.
 
 ## M01-09 Troubleshooting
 
