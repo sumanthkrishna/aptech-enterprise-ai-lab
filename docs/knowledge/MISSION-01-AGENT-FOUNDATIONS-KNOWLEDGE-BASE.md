@@ -1,14 +1,14 @@
 ---
-title: "Mission 01 — Know Your System"
+title: "Mission 01 – Know Your System"
 project: "Aptech Enterprise AI Lab"
 mission: "01"
-version: "1.0"
+version: "1.1"
 updated: "2026-10-30"
 status: "Living reference; runtime evidence separately required"
 tags: [enterprise-ai, mission-01, self-learning]
 ---
 
-# Mission 01 — Know Your System
+# Mission 01 – Know Your System
 
 > **Navigation:** [Curriculum index](./README.md) · [Mission 05 RAG](./MISSION-05-RAG-KNOWLEDGE-BASE.md)
 
@@ -30,10 +30,10 @@ tags: [enterprise-ai, mission-01, self-learning]
 | [M01-02](#m01-02-prerequisites-and-inheritance) | Prerequisites and inheritance |
 | [M01-03](#m01-03-architecture) | Architecture |
 | [M01-04](#m01-04-core-concepts) | Core concepts |
-| [M01-05](#m01-05-codetoconcept-map) | Code-to-concept map |
+| [M01-05](#m01-05-code-to-concept-map) | Code-to-concept map |
 | [M01-06](#m01-06-execution-lifecycle) | Execution lifecycle |
 | [M01-07](#m01-07-controlled-defect-and-diagnosis) | Controlled defect and diagnosis |
-| [M01-08](#m01-08-handson-verification) | Hands-on verification |
+| [M01-08](#m01-08-hands-on-verification) | Hands-on verification |
 | [M01-09](#m01-09-troubleshooting) | Troubleshooting |
 | [M01-10](#m01-10-evidence-and-scope-limits) | Evidence and scope limits |
 | [M01-11](#m01-11-interview-defense) | Interview defense |
@@ -43,13 +43,15 @@ tags: [enterprise-ai, mission-01, self-learning]
 
 ## M01-01 Story and outcome
 
-A new engineer inherits an Azure Foundry Agent and must identify each component and prove the baseline before modifying it.
+You've inherited a small Foundry Agent sample. It answers a question, but before you add tools or sessions, you need to know exactly what starts it, where the model is configured, and what a successful run proves. Your first job is to trace the request from the local script to Foundry and back.
 
-**Goal:** inherit → investigate → modify → break or model failure → diagnose → fix → defend. Do not confuse a passing offline check with a live Foundry integration result.
+**Your assignment:** explain the baseline in your own words, run it, and save the actual output. A green environment check is useful, but it doesn't prove the Agent made a successful model call.
+
+**Working habit:** INHERIT → INVESTIGATE → MODIFY → BREAK → DIAGNOSE → FIX → DEFEND.
 
 ## M01-02 Prerequisites and inheritance
 
-Read the earlier mission references before this one. Use a Python virtual environment, install repository requirements, and configure Microsoft Foundry only when running live Agent examples. Never commit .env secrets. This mission builds on the prior one rather than replacing it.
+Start with `lab/mission-01/01_hello_agent.py`. Create a Python virtual environment, install the repository requirements, and check `lab/common/config.py`. Set the Foundry project endpoint and deployment in your local `.env`; keep credentials and that file out of Git. This is the starting mission, so there is no earlier lab to inherit.
 
 ## M01-03 Architecture
 
@@ -65,11 +67,11 @@ Configuration → FoundryChatClient → Agent(instructions) → run → response
 
 ## M01-05 Code-to-concept map
 
-- `lab/common/config.py` — inspect for the concept and verify its behavior.
-- `scripts/verify_environment.py` — inspect for the concept and verify its behavior.
-- `UPSTREAM.md` — inspect for the concept and verify its behavior.
-- `README.md` — inspect for the concept and verify its behavior.
-- `lab/mission-01/01_hello_agent.py` — verified runnable baseline; demonstrates both Agent.run and stream=True.
+- `lab/mission-01/01_hello_agent.py`: follow `get_foundry_config()`, client construction, Agent construction, `agent.run()`, and the streaming loop.
+- `lab/common/config.py`: see how the project endpoint and model name are validated.
+- `scripts/verify_environment.py`: understand what the environment check actually tests.
+- `UPSTREAM.md`: identify the Microsoft Agent Framework source used by the lab.
+- `README.md`: find the repository's learning structure.
 
 ## M01-06 Execution lifecycle
 
@@ -77,9 +79,11 @@ Validate project endpoint and deployment → authenticate Azure CLI → construc
 
 ## M01-07 Controlled defect and diagnosis
 
-No numbered defect in this mission; the exercise is configuration and baseline investigation.
+There is no numbered defect to repair yet. Treat configuration mistakes as your first investigation: a Responses API URL supplied as a Foundry *project* endpoint, a missing deployment, or an expired Azure CLI login can stop the sample before you learn anything about Agent behavior.
 
-**Diagnostic method:** ASK → HYPOTHESIZE → INSPECT → TEST → PROVE → EXPLAIN. State the earliest incorrect boundary; do not substitute a confident Agent answer for evidence.
+Start with the earliest failing boundary. Check configuration first, then authentication, then the Agent call. Don't attribute every failure to the model.
+
+Use the investigation sequence: ASK → HYPOTHESIZE → INSPECT → TEST → PROVE → EXPLAIN.
 
 ## M01-08 Hands-on verification
 
@@ -98,7 +102,7 @@ No numbered defect in this mission; the exercise is configuration and baseline i
 
 ## M01-10 Evidence and scope limits
 
-**Source-supported facts:** the listed repository code and tests describe the behavior above. **Not automatically proven:** live Foundry runtime, production readiness, authentication, durable memory, or a reviewed deployment. Capture actual commands, output, commit SHA and reviewer notes before changing a gate to PASS.
+Read the source, then run it. The script demonstrates both a regular Agent call and a streamed response. Keep the terminal output and note which mode you observed. An environment check only establishes local prerequisites; it does not prove the Foundry request completed. This reference does not claim a new live run.
 
 ## M01-11 Interview defense
 
@@ -146,3 +150,4 @@ The model generates responses; the Agent application defines how the model is in
 | Date | Version | Change |
 |---|---|---|
 | 2026-10-30 | 1.0 | Initial living reference created from available repository source |
+| 2026-10-30 | 1.1 | Humanized learning narrative and evidence guidance; preserved branch and source links |
