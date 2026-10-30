@@ -2,9 +2,13 @@
 
 A 40-hour enterprise AI lab built around real engineering habits: read inherited code, reproduce a problem, trace its cause, make a small repair, and prove it works.
 
+## First time here?
+
+Read [START-HERE.md](START-HERE.md) and check out `release/starter-v1` for a clean Mission 01 starting point. Keep the mission branches as read-only references and do experiments on your own learner branch. Once the PRs merge, `main` will contain the completed code together.
+
 ## Self-learning curriculum
 
-Start with the [Living Knowledge Library](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/blob/mission05-rag-grounded-answers/docs/knowledge/README.md). It connects Missions 01–05 to their respective source branches, source files, defects, tests, and next/previous references. The library currently lives on the Mission 05 branch pending a merge decision; the link is branch-specific by design.
+Start with the [Living Knowledge Library](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/blob/mission05-rag-grounded-answers/docs/knowledge/README.md). It connects Missions 01–05 to their respective source branches, source files, defects, tests, and next/previous references. The library is currently maintained on the Mission 05 branch and will become part of `main` when its PR merges.
 
 ## Pilot scope
 
@@ -35,4 +39,4 @@ Initial lab samples are adapted from Microsoft Agent Framework. See `UPSTREAM.md
 - `docs/` setup, architecture, troubleshooting
 - `instructor/` instructor-only guidance/solutions
 
-**Status:** v0.1 pilot under construction.
+**Status:** Missions 01–05 are documented on their source branches. `main` becomes the cumulative reference after the mission PRs merge.
