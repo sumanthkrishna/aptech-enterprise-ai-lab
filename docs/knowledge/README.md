@@ -105,3 +105,9 @@ The references for Missions 01–04 were created from available repository sourc
 | 4 | [#9](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/pull/9) | `integration/mission05-on-mission04` | Draft; verify then merge after #8 |
 
 Original PRs #3–#5 were closed as superseded, not merged. Their original mission branches remain intact. This queue is designed to avoid the competing shared-file edits found between Missions 02 and 03. GitHub mergeability must be checked again after each merge; current checks are not a guarantee about future repository changes.
+
+## Mission 06: observability and evaluation
+
+[Mission 06 knowledge base](MISSION-06-OBSERVABILITY-EVALUATION-KNOWLEDGE-BASE.md) | [Milestone](../milestones/MILESTONE-06.md) | [Learner card](../../training/missions/mission-06-diagnose-false-success.md) | [Code](../../lab/mission-06/README.md).
+
+BUG-005 is a synthetic false-success fixture; no live Foundry verification is claimed. Mission 07 is maintained on a separate branch and will be integrated after Mission 06 review.

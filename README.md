@@ -40,3 +40,7 @@ Initial lab samples are adapted from Microsoft Agent Framework. See `UPSTREAM.md
 - `instructor/` instructor-only guidance/solutions
 
 **Status:** Missions 01–05 are documented on their source branches. `main` becomes the cumulative reference after the mission PRs merge.
+
+## Mission 06: Observability and evaluation
+
+[Mission 06 lab](lab/mission-06/README.md) adds in-memory trace events, a synthetic RAG evaluation dataset and BUG-005 false-success checks. [Knowledge base](docs/knowledge/MISSION-06-OBSERVABILITY-EVALUATION-KNOWLEDGE-BASE.md). This is offline-only, not a production telemetry deployment.

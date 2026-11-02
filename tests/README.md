@@ -29,3 +29,7 @@ python tests/test_mission03_session_routing.py
 ```
 
 This validates the lab's application-level session ownership policy without Azure/model calls. The end-to-end Mission 03 run remains a separate integration check.
+
+## Mission 06 regression
+
+Run `python tests/test_mission06_observability.py`. This verifies local stage traces, false-success detection, and a small Mission 05 retrieval dataset. Record actual execution results before marking complete.
