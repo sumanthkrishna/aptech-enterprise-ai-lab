@@ -1,6 +1,6 @@
 # Reproducible Pilot Setup
 
-The v0.1 pilot uses one shared configuration for Missions 01–03.
+The lab shares its Foundry configuration across the initial Agent missions. New learners should start from `release/starter-v1`; use `main` for the cumulative implementation after the mission PRs merge.
 
 ## 1. Prerequisites
 
@@ -13,6 +13,7 @@ The v0.1 pilot uses one shared configuration for Missions 01–03.
 ```bash
 git clone https://github.com/sumanthkrishna/aptech-enterprise-ai-lab.git
 cd aptech-enterprise-ai-lab
+git switch release/starter-v1
 
 python -m venv .venv
 ```
@@ -57,7 +58,7 @@ cp .env.example .env
 Edit `.env`:
 
 ```text
-FOUNDRY_PROJECT_ENDPOINT=https://<your-project>.services.ai.azure.com
+FOUNDRY_PROJECT_ENDPOINT=https://<your-resource>.services.ai.azure.com/api/projects/<your-project>
 FOUNDRY_MODEL=gpt-4o
 ```
 
@@ -88,15 +89,12 @@ Always run from the repository root so the shared `lab` package resolves consist
 
 ```bash
 python lab/mission-01/01_hello_agent.py
-python lab/mission-02/02_add_tools.py
-python lab/mission-03/03_multi_turn.py
 ```
 
 Expected behavioral checks:
 
 1. Mission 01 returns a normal response and then a streamed response.
-2. Mission 02 answers the Seattle weather question by using the sample tool.
-3. Mission 03's second turn recalls the fictional name/hobby because the same session is reused.
+2. For Missions 02 and 03, switch to the matching mission branch and follow its living reference. Those samples are not part of the frozen starter checkpoint.
 
 Exact model wording is nondeterministic; validate behavior, not sentence-for-sentence output.
 
@@ -116,3 +114,7 @@ Missions 01–03 use `lab/common/config.py` to resolve:
 The endpoint is mandatory. The model defaults to `gpt-4o` if omitted.
 
 This removes machine-specific endpoint edits from the mission source and gives every learner the same setup path.
+
+## Learning branches and complete application
+
+Read [START-HERE.md](../../START-HERE.md) for the branch map and personal practice workflow. Mission 04 and 05 add API and RAG capabilities; their offline tests and live Foundry checks are separate gates.
