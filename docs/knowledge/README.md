@@ -15,6 +15,7 @@ Read [START-HERE](../../START-HERE.md), then check out [`release/starter-v1`](ht
 | 03 | What Does the Agent Remember? | [Session isolation](MISSION-03-SESSION-ISOLATION-KNOWLEDGE-BASE.md) | Same-user continuity and cross-user isolation | BUG-002: wrong session routing |
 | 04 | Turn Your Agent into an API | [FastAPI service](MISSION-04-FASTAPI-AGENT-SERVICE-KNOWLEDGE-BASE.md) | HTTP validation, sessions, error boundaries, SSE | BUG-003: hypothetical global session |
 | 05 | Make Your Agent Answer from Documents | [RAG knowledge base](MISSION-05-RAG-KNOWLEDGE-BASE.md) | Retrieval, freshness, grounding, source provenance | BUG-004: retired policy inclusion |
+| 07 | Who Should Answer This? | [Multi-agent orchestration](MISSION-07-MULTI-AGENT-ORCHESTRATION-KNOWLEDGE-BASE.md) | Specialist routing, explicit handoffs, per-request context | BUG-006: hypothetical cross-user attribution |
 
 ## Branch map and source of truth
 
@@ -25,8 +26,11 @@ Read [START-HERE](../../START-HERE.md), then check out [`release/starter-v1`](ht
 | 03 | [mission03-session-isolation](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/tree/mission03-session-isolation) | [03_multi_turn.py](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/blob/mission03-session-isolation/lab/mission-03/03_multi_turn.py) | [M03 reference](MISSION-03-SESSION-ISOLATION-KNOWLEDGE-BASE.md) |
 | 04 | [mission04-fastapi-agent-service](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/tree/mission04-fastapi-agent-service) | [service.py](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/blob/mission04-fastapi-agent-service/lab/mission-04/service.py) | [M04 reference](MISSION-04-FASTAPI-AGENT-SERVICE-KNOWLEDGE-BASE.md) |
 | 05 | [mission05-rag-grounded-answers](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/tree/mission05-rag-grounded-answers) | [service.py](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/blob/mission05-rag-grounded-answers/lab/mission-05/service.py) | [M05 reference](MISSION-05-RAG-KNOWLEDGE-BASE.md) |
+| 07 | [mission07-multi-agent-orchestration](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/tree/mission07-multi-agent-orchestration) | [orchestrator.py](https://github.com/sumanthkrishna/aptech-enterprise-ai-lab/blob/mission07-multi-agent-orchestration/lab/mission-07/orchestrator.py) | [M07 reference](MISSION-07-MULTI-AGENT-ORCHESTRATION-KNOWLEDGE-BASE.md) |
 
 **Provenance:** Mission 01's baseline originally lived on `main` and is now preserved on `release/starter-v1`; the other four mission branches were confirmed. The five *living reference documents* are centralized on the Mission 05 branch, with direct links to the matching source branch. Earlier branches are not rewritten. This keeps mission history intact and avoids adding competing copies of the same documentation.
+
+**Sequence note:** Mission 06 (observability and evaluation) is still proposed and not implemented. Mission 07 is available as an offline-first independent exercise; don't assume Mission 06 code exists.
 
 ## How to work through a mission
 

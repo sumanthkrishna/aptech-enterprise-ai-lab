@@ -20,3 +20,7 @@ Full learner mission cards are being migrated from the approved Aptech pilot doc
 
 - `mission-03-prove-session-boundary.md` — evidence-driven BUG-002 investigation.
 - `../../docs/milestones/MILESTONE-03.md` — complete self-learning milestone and verification gate.
+
+## Mission 07 learner package
+
+Read `mission-07-orchestrate-specialists.md` and `../../docs/milestones/MILESTONE-07.md`. Mission 06 is not yet implemented; Mission 07's offline lab can be practiced independently.

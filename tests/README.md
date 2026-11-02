@@ -29,3 +29,7 @@ python tests/test_mission03_session_routing.py
 ```
 
 This validates the lab's application-level session ownership policy without Azure/model calls. The end-to-end Mission 03 run remains a separate integration check.
+
+## Mission 07 regression
+
+Run `python tests/test_mission07_orchestration.py`. This checks offline routing, bounded handoffs, validation and generic specialist errors. It does not establish live model behavior.

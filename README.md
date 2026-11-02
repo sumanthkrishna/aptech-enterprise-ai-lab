@@ -40,3 +40,7 @@ Initial lab samples are adapted from Microsoft Agent Framework. See `UPSTREAM.md
 - `instructor/` instructor-only guidance/solutions
 
 **Status:** Missions 01–05 are documented on their source branches. `main` becomes the cumulative reference after the mission PRs merge.
+
+## Mission 07 (new, offline-first)
+
+[Mission 07: Multi-agent orchestration](lab/mission-07/README.md) adds deterministic specialist routing, explicit handoff records, an API contract and a regression test. [Knowledge reference](docs/knowledge/MISSION-07-MULTI-AGENT-ORCHESTRATION-KNOWLEDGE-BASE.md). This is not yet live multi-Agent Framework execution. Mission 06 remains proposed, so the sequence has a documented gap.
