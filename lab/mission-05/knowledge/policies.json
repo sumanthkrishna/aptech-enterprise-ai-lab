@@ -1,0 +1,38 @@
+[
+  {
+    "id": "REMOTE-2025",
+    "title": "Remote Work Policy — retired",
+    "status": "retired",
+    "effective": "2025-01-01",
+    "sections": [
+      {
+        "id": "3.2",
+        "text": "Employees may work remotely two days per week with manager approval."
+      }
+    ]
+  },
+  {
+    "id": "REMOTE-2026",
+    "title": "Remote Work Policy — current",
+    "status": "active",
+    "effective": "2026-07-01",
+    "sections": [
+      {
+        "id": "3.2",
+        "text": "Employees may work remotely three days per week with manager approval."
+      }
+    ]
+  },
+  {
+    "id": "EXPENSE-2026",
+    "title": "Travel Expense Policy",
+    "status": "active",
+    "effective": "2026-07-01",
+    "sections": [
+      {
+        "id": "2.1",
+        "text": "Travel expense claims must be submitted within thirty calendar days of the trip end date."
+      }
+    ]
+  }
+]
